@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/home_background"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    tools:context="vn.dating.MainActivity$PlaceholderFragment" >
+    
+
+    <LinearLayout
+        android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" 
+	    android:paddingLeft="16dp"
+	    android:paddingRight="16dp">
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/btn_blue"
+        android:text="@string/login"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+		android:background="@color/btn_grey"
+		android:textColor="@color/white"/>
+    </LinearLayout>
+	<ImageView
+	    android:id="@+id/imageViewBackground"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="top"
+	    android:scaleType="fitEnd"
+	    android:src="@drawable/background" />
+
+</LinearLayout>

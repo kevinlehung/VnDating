@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/profileEntry"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:orientation="horizontal" >
+
+    <com.loopj.android.image.SmartImageView
+        android:id="@+id/photoImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/fullNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/aboutMeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+		<LinearLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="bottom"
+		    android:orientation="horizontal" >
+			<ImageView
+		        android:id="@+id/chatImg"
+		        android:layout_width="30dp"
+		        android:layout_height="30dp"
+		        android:layout_margin="10dp"
+		        android:scaleType="centerCrop"
+		        android:src="@drawable/chat_icon" />
+			<ImageView
+		        android:id="@+id/commentImg"
+		        android:layout_width="30dp"
+		        android:layout_height="30dp"
+		        android:layout_margin="10dp"
+		        android:scaleType="centerCrop"
+		        android:src="@drawable/comment_icon" />
+			<ImageView
+		        android:id="@+id/cameraImg"
+		        android:layout_width="30dp"
+		        android:layout_height="30dp"
+		        android:layout_margin="10dp"
+		        android:scaleType="centerCrop"
+		        android:src="@drawable/camera_icon" />
+		</LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

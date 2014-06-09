@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hẹn hò</string>
+    <string name="login">Đăng nhập</string>
+    <string name="register">Đăng ký</string>
+    <string name="action_settings">Settings</string>
+
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="btn_blue">#7DC9F0</color>
+    <color name="btn_grey">#84AABD</color>
+
+    <string name="i_am">Tôi là </string>
+    <string name="gender">Giới tính</string>
+    <string name="introduce_yourself">Giới thiệu về bạn</string>
+    <string name="full_name">Tên đầy đủ</string>
+    <string name="match_criteria">Tiêu chí tìm kiếm</string>
+    <string name="dating_purpose">Mục tiêu hẹn hò</string>
+    <string name="find_marital_status">Cần tìm người...</string>
+    <string name="marital_status">Tình trạng hôn nhân</string>
+    <string name="title_activity_find_profiles">FindProfilesActivity</string>
+    <string name="title_match_criteria">Tiêu chí hẹn hò</string>
+    <string name="title_find_profiles">Tìm người hẹn hò</string>
+    <string name="title_favourite_list">Danh sách hẹn hò</string>
+    <string name="title_new_messages">Tin nhắn mới</string>
+    <string name="title_account_setting">Quản lý tài khoản</string>
+    <string name="title_signout">Thoát</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="title_activity_find_friend">FindFriendActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_update_profile">Tôi là/Cần tìm</string>
+    
+    
+    
+	<string-array name="genders_array">
+        <item>Nữ</item>
+        <item>Nam</item>
+        <item>Đồng tính nữ</item>
+        <item>Đồng tính nam</item>
+    </string-array>
+    
+    <string-array name="dating_purposes_array">
+        <item>Tìm người yêu ngắn hạn</item>
+        <item>Tìm bạn tâm sự</item>
+        <item>Tìm người yêu lâu dài</item>
+    </string-array>
+    
+    <string-array name="marital_statuses_array">
+        <item>Độc thân</item>
+        <item>Đang có người yêu</item>
+        <item>Đã có gia đình</item>
+        <item>Ly dị</item>
+        <item>Ở góa</item>
+    </string-array>
+</resources>

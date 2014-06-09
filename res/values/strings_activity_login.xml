@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="title_activity_login">Đăng nhập</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Mật khẩu</string>
+    <string name="action_sign_in">Đăng nhập</string>
+    <string name="action_sign_in_short">Đăng nhập</string>
+    <string name="action_forgot_password">Phục hồi mật khẩu</string>
+    <string name="login_progress_signing_in">Đang xử lý&#8230;</string>
+    <string name="error_invalid_email">Email không hợp lệ</string>
+    <string name="error_incorrect_password">Mật khẩu không hợp lệ</string>
+    <string name="error_field_required">Bắt buộc nhập</string>
+
+</resources>

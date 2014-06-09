@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="title_activity_register">Đăng ký</string>
+
+    <!-- Strings related to register -->
+    <string name="action_register">Đăng ký</string>
+    <string name="action_sign_up_short">Đăng ký</string>
+	<string name="error_password_too_short">Mật khẩu quá ngắn</string>
+	<string name="error_email_is_not_available">Email đã tồn tại</string>
+	<string name="signup_progress_signing_up">Đang xử lý&#8230;</string>
+</resources>
