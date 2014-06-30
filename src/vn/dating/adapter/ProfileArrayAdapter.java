@@ -64,7 +64,9 @@ public class ProfileArrayAdapter extends ArrayAdapter<ProfileBean> {
 			aboutMeTxt.setText(profileBean.getAboutMe());
 			
 			SmartImageView photoImg = (SmartImageView) v.findViewById(R.id.photoImg);
-			photoImg.setImageUrl(profileBean.getPhotoUrl());
+			if (!profileBean.getPhotoUrls().isEmpty()) {
+				photoImg.setImageUrl(profileBean.getPhotoUrls().get(0));
+			}
 		}
 
 		return v;

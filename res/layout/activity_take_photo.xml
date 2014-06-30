@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black"
+    android:orientation="vertical" >
+	<GridView
+        android:id="@+id/photoGridView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"                                                   
+        android:gravity="center"
+        android:columnWidth="100dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="5dp"
+        android:drawSelectorOnTop="true"
+        android:stretchMode="columnWidth"
+        android:layout_weight="1">
+    </GridView>
+
+	
+	<ImageView
+	    android:id="@+id/takePhotoImg"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="10dp"
+	    android:layout_gravity="center_horizontal"
+	    android:src="@drawable/camera_icon_96" 
+	    />
+
+</LinearLayout>

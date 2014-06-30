@@ -7,8 +7,6 @@ import vn.dating.R;
 import vn.dating.adapter.NameValueArrayAdapter;
 import vn.dating.adapter.NameValueItem;
 import vn.dating.task.SignupTask;
-import vn.dating.task.TaskListener;
-import vn.dating.task.bean.UserDetailBean;
 import vn.dating.task.form.UserSignUpForm;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -32,7 +30,7 @@ import android.widget.TextView;
  * Activity which displays a signup screen to the user, offering registration as
  * well.
  */
-public class RegisterActivity extends Activity implements TaskListener<UserDetailBean>{
+public class RegisterActivity extends Activity {
 	private static List<NameValueItem> MARITAL_STATUSES = Arrays.asList(new NameValueItem[] {
 			new NameValueItem("Độc thân", "SINGLE"),
 			new NameValueItem("Đang có người yêu", "COUPLE"),
@@ -42,6 +40,13 @@ public class RegisterActivity extends Activity implements TaskListener<UserDetai
 			new NameValueItem("Ở góa", "RELICT")
 		});
 	
+	private static List<NameValueItem> GENDERS = Arrays.asList(new NameValueItem[] {
+			new NameValueItem("Nữ", "FEMALE"),
+			new NameValueItem("Nam", "MALE"),
+			new NameValueItem("Đồng tính nữ", "LESBIAN"),
+			new NameValueItem("Đồng tính nam", "GAY")
+		});
+
 	/**
 	 * The default email to populate the email field with.
 	 */
@@ -99,6 +104,8 @@ public class RegisterActivity extends Activity implements TaskListener<UserDetai
 		mAboutMeView = (EditText) findViewById(R.id.aboutMe);
 		mFullNameView = (EditText) findViewById(R.id.fullName);
 		mGenderView = (Spinner) findViewById(R.id.gender);
+		mGenderView.setAdapter(new NameValueArrayAdapter(this, android.R.layout.simple_spinner_item, GENDERS));
+		
 		mMaritalStatusView = (Spinner) findViewById(R.id.maritalStatus);
 		mMaritalStatusView.setAdapter(new NameValueArrayAdapter(this, android.R.layout.simple_spinner_item, MARITAL_STATUSES));
 		
@@ -143,7 +150,7 @@ public class RegisterActivity extends Activity implements TaskListener<UserDetai
 		// Store values at the time of the signup attempt.
 		mEmail = mEmailView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
-		mGender = mGenderView.getSelectedItem().toString();
+		mGender = ((NameValueItem)mGenderView.getSelectedItem()).getValue();
 		mAboutMe = mAboutMeView.getText().toString();
 		mFullName = mFullNameView.getText().toString();
 		mMaritalStatus = ((NameValueItem)mMaritalStatusView.getSelectedItem()).getValue();
@@ -191,7 +198,7 @@ public class RegisterActivity extends Activity implements TaskListener<UserDetai
 			userSignupForm.setFullName(mFullName);
 			userSignupForm.setAboutMe(mAboutMe);
 			userSignupForm.setMaritalStatus(mMaritalStatus);
-			SignupTask signupTask = new SignupTask(this, this, userSignupForm );
+			SignupTask signupTask = new SignupTask(this, userSignupForm);
 			signupTask.execute(new String[] {mEmail, mPassword});
 		}
 	}
@@ -200,7 +207,7 @@ public class RegisterActivity extends Activity implements TaskListener<UserDetai
 	 * Shows the progress UI and hides the signup form.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-	private void showProgress(final boolean show) {
+	public void showProgress(final boolean show) {
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
 		// for very easy animations. If available, use these APIs to fade-in
 		// the progress spinner.
@@ -237,24 +244,8 @@ public class RegisterActivity extends Activity implements TaskListener<UserDetai
 		}
 	}
 
-
-	@Override
-	public void onPostExecute(UserDetailBean userDetailBean) {
-		showProgress(false);
-
-		if (userDetailBean != null) {
-			Intent i = new Intent(RegisterActivity.this, UserActivity.class);
-            startActivity(i);
-		} else {
-			mEmailView.setError(getString(R.string.error_email_is_not_available));
-			mEmailView.requestFocus();
-		}
-		
-	}
-
-	@Override
-	public void onCancelled() {
-		showProgress(false);
-		
+	public void setMailError(String statusMessage) {
+		mEmailView.setError(statusMessage);
+		mEmailView.requestFocus();
 	}
 }

@@ -9,17 +9,29 @@ package vn.dating;
 
 public final class R {
     public static final class array {
-        public static final int dating_purposes_array=0x7f070001;
-        public static final int genders_array=0x7f070000;
-        public static final int marital_statuses_array=0x7f070002;
+        public static final int dating_purposes_array=0x7f070000;
+        public static final int image_ids=0x7f070001;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int btn_blue=0x7f060002;
-        public static final int btn_grey=0x7f060003;
-        public static final int red=0x7f060001;
-        public static final int white=0x7f060000;
+        public static final int article_title=0x7f04000a;
+        public static final int articlecolor=0x7f040009;
+        public static final int black=0x7f040004;
+        public static final int blue=0x7f040006;
+        public static final int blueback=0x7f040008;
+        public static final int btn_blue=0x7f04000f;
+        public static final int btn_grey=0x7f040010;
+        public static final int cachecolor=0x7f04000b;
+        public static final int date_color=0x7f040003;
+        public static final int gold=0x7f040007;
+        public static final int gray=0x7f040005;
+        public static final int green=0x7f04000e;
+        public static final int orange=0x7f040000;
+        public static final int pink=0x7f04000d;
+        public static final int red=0x7f04000c;
+        public static final int transparent=0x7f040002;
+        public static final int white=0x7f040001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -29,79 +41,102 @@ public final class R {
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
-        public static final int navigation_drawer_width=0x7f040002;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
+        public static final int navigation_drawer_width=0x7f050002;
     }
     public static final class drawable {
         public static final int aaa=0x7f020000;
-        public static final int background=0x7f020001;
-        public static final int camera_icon=0x7f020002;
-        public static final int chat_icon=0x7f020003;
-        public static final int comment_icon=0x7f020004;
-        public static final int drawer_shadow=0x7f020005;
-        public static final int home_background=0x7f020006;
-        public static final int ic_drawer=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
-        public static final int loader=0x7f020009;
+        public static final int anonymouse_female=0x7f020001;
+        public static final int background=0x7f020002;
+        public static final int camera_icon_128=0x7f020003;
+        public static final int camera_icon_16=0x7f020004;
+        public static final int camera_icon_24=0x7f020005;
+        public static final int camera_icon_256=0x7f020006;
+        public static final int camera_icon_32=0x7f020007;
+        public static final int camera_icon_48=0x7f020008;
+        public static final int camera_icon_512=0x7f020009;
+        public static final int camera_icon_64=0x7f02000a;
+        public static final int camera_icon_72=0x7f02000b;
+        public static final int camera_icon_96=0x7f02000c;
+        public static final int chat_icon=0x7f02000d;
+        public static final int comment_icon=0x7f02000e;
+        public static final int drawer_shadow=0x7f02000f;
+        public static final int grid_color_selector=0x7f020010;
+        public static final int home_background=0x7f020011;
+        public static final int ic_action_accept=0x7f020012;
+        public static final int ic_action_remove=0x7f020013;
+        public static final int ic_drawer=0x7f020014;
+        public static final int ic_launcher=0x7f020015;
+        public static final int image_1=0x7f020016;
+        public static final int image_2=0x7f020017;
+        public static final int loader=0x7f020018;
     }
     public static final class id {
         public static final int aboutMe=0x7f0a0010;
-        public static final int aboutMeTxt=0x7f0a0020;
-        public static final int action_example=0x7f0a0025;
-        public static final int action_forgot_password=0x7f0a0026;
-        public static final int action_settings=0x7f0a0024;
-        public static final int cameraImg=0x7f0a0023;
-        public static final int chatImg=0x7f0a0021;
-        public static final int commentImg=0x7f0a0022;
+        public static final int aboutMeTxt=0x7f0a0022;
+        public static final int action_accept=0x7f0a002b;
+        public static final int action_example=0x7f0a0029;
+        public static final int action_forgot_password=0x7f0a002a;
+        public static final int action_remove=0x7f0a002c;
+        public static final int action_settings=0x7f0a0028;
+        public static final int cameraImg=0x7f0a0025;
+        public static final int chatImg=0x7f0a0023;
+        public static final int commentImg=0x7f0a0024;
         public static final int container=0x7f0a0008;
-        public static final int datingPurpose=0x7f0a001a;
-        public static final int drawer_layout=0x7f0a0012;
+        public static final int datingPurpose=0x7f0a001c;
+        public static final int drawer_layout=0x7f0a0014;
         public static final int email=0x7f0a0004;
-        public static final int find_gender=0x7f0a0019;
+        public static final int find_gender=0x7f0a001b;
         public static final int fullName=0x7f0a000d;
-        public static final int fullNameTxt=0x7f0a001f;
+        public static final int fullNameTxt=0x7f0a0021;
         public static final int gender=0x7f0a000e;
-        public static final int iAmTxt=0x7f0a001c;
-        public static final int imageViewBackground=0x7f0a0018;
+        public static final int iAmTxt=0x7f0a001e;
+        public static final int image=0x7f0a0026;
+        public static final int imageViewBackground=0x7f0a001a;
         public static final int login=0x7f0a0006;
-        public static final int loginBtn=0x7f0a0016;
+        public static final int loginBtn=0x7f0a0018;
         public static final int login_form=0x7f0a0003;
         public static final int login_status=0x7f0a0001;
         public static final int login_status_message=0x7f0a0002;
         public static final int maritalStatus=0x7f0a000f;
-        public static final int maritalStatusCriteria=0x7f0a001b;
-        public static final int navigation_drawer=0x7f0a0013;
+        public static final int maritalStatusCriteria=0x7f0a001d;
+        public static final int navigation_drawer=0x7f0a0015;
         public static final int pager=0x7f0a0000;
         public static final int password=0x7f0a0005;
-        public static final int photoImg=0x7f0a001e;
-        public static final int profileEntry=0x7f0a001d;
-        public static final int profileList=0x7f0a0015;
-        public static final int registerBtn=0x7f0a0017;
-        public static final int section_label=0x7f0a0014;
+        public static final int photoGridView=0x7f0a0012;
+        public static final int photoImg=0x7f0a0020;
+        public static final int profileEntry=0x7f0a001f;
+        public static final int profileList=0x7f0a0017;
+        public static final int registerBtn=0x7f0a0019;
+        public static final int section_label=0x7f0a0016;
+        public static final int selectImage=0x7f0a0027;
         public static final int sign_in_button=0x7f0a0007;
         public static final int sign_up_button=0x7f0a0011;
         public static final int signup=0x7f0a000c;
         public static final int signup_form=0x7f0a000b;
         public static final int signup_status=0x7f0a0009;
         public static final int signup_status_message=0x7f0a000a;
+        public static final int takePhotoImg=0x7f0a0013;
     }
     public static final class layout {
         public static final int activity_find_friend=0x7f030000;
         public static final int activity_login=0x7f030001;
         public static final int activity_main=0x7f030002;
         public static final int activity_register=0x7f030003;
-        public static final int activity_update_profile=0x7f030004;
-        public static final int activity_user=0x7f030005;
-        public static final int fragment_account_setting=0x7f030006;
-        public static final int fragment_favourite_list=0x7f030007;
-        public static final int fragment_find_friend=0x7f030008;
-        public static final int fragment_find_profiles=0x7f030009;
-        public static final int fragment_main=0x7f03000a;
-        public static final int fragment_match_criteria=0x7f03000b;
-        public static final int fragment_navigation_drawer=0x7f03000c;
-        public static final int fragment_update_profile=0x7f03000d;
-        public static final int profile_entry=0x7f03000e;
+        public static final int activity_take_photo=0x7f030004;
+        public static final int activity_update_profile=0x7f030005;
+        public static final int activity_user=0x7f030006;
+        public static final int fragment_account_setting=0x7f030007;
+        public static final int fragment_favourite_list=0x7f030008;
+        public static final int fragment_find_friend=0x7f030009;
+        public static final int fragment_find_profiles=0x7f03000a;
+        public static final int fragment_main=0x7f03000b;
+        public static final int fragment_match_criteria=0x7f03000c;
+        public static final int fragment_navigation_drawer=0x7f03000d;
+        public static final int fragment_update_profile=0x7f03000e;
+        public static final int profile_entry=0x7f03000f;
+        public static final int row_photo_grid=0x7f030010;
     }
     public static final class menu {
         public static final int find_friend=0x7f090000;
@@ -110,56 +145,57 @@ public final class R {
         public static final int login=0x7f090003;
         public static final int main=0x7f090004;
         public static final int register=0x7f090005;
-        public static final int update_profile=0x7f090006;
+        public static final int take_photo_menu=0x7f090006;
+        public static final int update_profile=0x7f090007;
     }
     public static final class string {
-        public static final int action_example=0x7f050015;
-        public static final int action_forgot_password=0x7f050020;
+        public static final int action_example=0x7f060015;
+        public static final int action_forgot_password=0x7f060020;
         /**  Strings related to register 
          */
-        public static final int action_register=0x7f050026;
-        public static final int action_settings=0x7f050003;
-        public static final int action_sign_in=0x7f05001e;
-        public static final int action_sign_in_short=0x7f05001f;
-        public static final int action_sign_up_short=0x7f050027;
-        public static final int app_name=0x7f050000;
-        public static final int dating_purpose=0x7f050009;
-        public static final int error_email_is_not_available=0x7f050029;
-        public static final int error_field_required=0x7f050024;
-        public static final int error_incorrect_password=0x7f050023;
-        public static final int error_invalid_email=0x7f050022;
-        public static final int error_password_too_short=0x7f050028;
-        public static final int find_marital_status=0x7f05000a;
-        public static final int full_name=0x7f050007;
-        public static final int gender=0x7f050005;
-        public static final int i_am=0x7f050004;
-        public static final int introduce_yourself=0x7f050006;
-        public static final int login=0x7f050001;
-        public static final int login_progress_signing_in=0x7f050021;
-        public static final int marital_status=0x7f05000b;
-        public static final int match_criteria=0x7f050008;
-        public static final int navigation_drawer_close=0x7f050014;
-        public static final int navigation_drawer_open=0x7f050013;
+        public static final int action_register=0x7f060026;
+        public static final int action_settings=0x7f060003;
+        public static final int action_sign_in=0x7f06001e;
+        public static final int action_sign_in_short=0x7f06001f;
+        public static final int action_sign_up_short=0x7f060027;
+        public static final int app_name=0x7f060000;
+        public static final int dating_purpose=0x7f060009;
+        public static final int error_email_is_not_available=0x7f060029;
+        public static final int error_field_required=0x7f060024;
+        public static final int error_incorrect_password=0x7f060023;
+        public static final int error_invalid_email=0x7f060022;
+        public static final int error_password_too_short=0x7f060028;
+        public static final int find_marital_status=0x7f06000a;
+        public static final int full_name=0x7f060007;
+        public static final int gender=0x7f060005;
+        public static final int i_am=0x7f060004;
+        public static final int introduce_yourself=0x7f060006;
+        public static final int login=0x7f060001;
+        public static final int login_progress_signing_in=0x7f060021;
+        public static final int marital_status=0x7f06000b;
+        public static final int match_criteria=0x7f060008;
+        public static final int navigation_drawer_close=0x7f060014;
+        public static final int navigation_drawer_open=0x7f060013;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f05001c;
-        public static final int prompt_password=0x7f05001d;
-        public static final int register=0x7f050002;
-        public static final int signup_progress_signing_up=0x7f05002a;
-        public static final int title_account_setting=0x7f050011;
-        public static final int title_activity_find_friend=0x7f050016;
-        public static final int title_activity_find_profiles=0x7f05000c;
-        public static final int title_activity_login=0x7f05001b;
-        public static final int title_activity_register=0x7f050025;
-        public static final int title_activity_update_profile=0x7f05001a;
-        public static final int title_favourite_list=0x7f05000f;
-        public static final int title_find_profiles=0x7f05000e;
-        public static final int title_match_criteria=0x7f05000d;
-        public static final int title_new_messages=0x7f050010;
-        public static final int title_section1=0x7f050017;
-        public static final int title_section2=0x7f050018;
-        public static final int title_section3=0x7f050019;
-        public static final int title_signout=0x7f050012;
+        public static final int prompt_email=0x7f06001c;
+        public static final int prompt_password=0x7f06001d;
+        public static final int register=0x7f060002;
+        public static final int signup_progress_signing_up=0x7f06002a;
+        public static final int title_account_setting=0x7f060011;
+        public static final int title_activity_find_friend=0x7f060016;
+        public static final int title_activity_find_profiles=0x7f06000c;
+        public static final int title_activity_login=0x7f06001b;
+        public static final int title_activity_register=0x7f060025;
+        public static final int title_activity_update_profile=0x7f06001a;
+        public static final int title_favourite_list=0x7f06000f;
+        public static final int title_find_profiles=0x7f06000e;
+        public static final int title_match_criteria=0x7f06000d;
+        public static final int title_new_messages=0x7f060010;
+        public static final int title_section1=0x7f060017;
+        public static final int title_section2=0x7f060018;
+        public static final int title_section3=0x7f060019;
+        public static final int title_signout=0x7f060012;
     }
     public static final class style {
         /** 

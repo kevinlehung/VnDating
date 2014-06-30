@@ -1,13 +1,8 @@
 package vn.dating.activity;
 
-import java.util.List;
-
 import vn.dating.R;
-import vn.dating.R.id;
-import vn.dating.R.layout;
 import vn.dating.adapter.ProfileArrayAdapter;
-import vn.dating.task.bean.ProfileBean;
-import vn.dating.test.ProfileTestUtil;
+import vn.dating.task.FindProfilesTask;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -63,6 +58,7 @@ public class FindProfilesFragment extends Fragment {
 		ListView profileList = (ListView) rootView.findViewById(R.id.profileList);
 		profileList.setAdapter(profileAdapter);
 		
-		ProfileTestUtil.generateListProfile(profileAdapter);
+		FindProfilesTask task = new FindProfilesTask(this.profileAdapter);
+		task.execute();
     }
 }

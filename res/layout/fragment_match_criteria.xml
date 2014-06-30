@@ -21,7 +21,6 @@
               android:id="@+id/find_gender"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:entries="@array/genders_array"
               android:prompt="@string/gender"/>
 	
 	<Spinner
@@ -35,7 +34,6 @@
               android:id="@+id/maritalStatusCriteria"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:entries="@array/marital_statuses_array"
               android:prompt="@string/find_marital_status"/>
 
 </RelativeLayout>

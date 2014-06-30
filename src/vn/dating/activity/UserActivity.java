@@ -2,12 +2,10 @@ package vn.dating.activity;
 
 import vn.dating.R;
 import vn.dating.task.SignoutTask;
-import vn.dating.task.TaskListener;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -63,21 +61,7 @@ public class UserActivity extends Activity
 	        	fragment = AccountSettingFragment.newInstance(position + 1);
 	        	break;
 	        case NavigationDrawerFragment.SIGNOUT_POSITION:
-	        	SignoutTask signoutTask = new SignoutTask(new TaskListener<Void>() {
-
-					@Override
-					public void onPostExecute(Void t) {
-						Intent i = new Intent(UserActivity.this, MainActivity.class);
-			            startActivity(i);
-					}
-
-					@Override
-					public void onCancelled() {
-						// TODO Auto-generated method stub
-						
-					}
-	        		
-				}, this);
+	        	SignoutTask signoutTask = new SignoutTask(this);
 	        	signoutTask.execute();
 	        	break;
 	    }

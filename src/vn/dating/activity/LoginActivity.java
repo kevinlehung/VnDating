@@ -2,8 +2,6 @@ package vn.dating.activity;
 
 import vn.dating.R;
 import vn.dating.task.SigninTask;
-import vn.dating.task.TaskListener;
-import vn.dating.task.bean.UserDetailBean;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -25,7 +23,7 @@ import android.widget.TextView;
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
-public class LoginActivity extends Activity implements TaskListener<UserDetailBean>{
+public class LoginActivity extends Activity {
 	/**
 	 * The default email to populate the email field with.
 	 */
@@ -143,7 +141,7 @@ public class LoginActivity extends Activity implements TaskListener<UserDetailBe
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
-			SigninTask userSigninTask = new SigninTask(this, this);
+			SigninTask userSigninTask = new SigninTask(this);
 			userSigninTask.execute(new String[]{mEmail, mPassword});
 		}
 	}
@@ -152,7 +150,7 @@ public class LoginActivity extends Activity implements TaskListener<UserDetailBe
 	 * Shows the progress UI and hides the login form.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-	private void showProgress(final boolean show) {
+	public void showProgress(final boolean show) {
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
 		// for very easy animations. If available, use these APIs to fade-in
 		// the progress spinner.
@@ -189,20 +187,4 @@ public class LoginActivity extends Activity implements TaskListener<UserDetailBe
 		}
 	}
 
-
-	@Override
-	public void onPostExecute(UserDetailBean userDetailBean) {
-		showProgress(false);
-
-		if (userDetailBean != null) {
-			Intent i = new Intent(LoginActivity.this, UserActivity.class);
-            startActivity(i);
-		}
-	}
-
-	@Override
-	public void onCancelled() {
-		showProgress(false);
-		
-	}
 }

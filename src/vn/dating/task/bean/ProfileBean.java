@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ProfileBean extends BaseWsBean {
 	private String fullName;
-	private String photoUrl;
 	private List<String> photoUrls;
 	private String aboutMe;
 	private String userEmail;
@@ -14,10 +13,10 @@ public class ProfileBean extends BaseWsBean {
 		
 	}
 	
-	public ProfileBean(String fullName, String photoUrl, String aboutMe) {
+	public ProfileBean(String fullName, List<String> photoUrls, String aboutMe) {
 		this.fullName = fullName;
-		this.photoUrl = photoUrl;
 		this.aboutMe = aboutMe;
+		this.photoUrls = photoUrls;
 	}
 
 	public String getFullName() {
@@ -26,14 +25,6 @@ public class ProfileBean extends BaseWsBean {
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
-	}
-
-	public String getPhotoUrl() {
-		return photoUrl;
-	}
-
-	public void setPhotoUrl(String photoUrl) {
-		this.photoUrl = photoUrl;
 	}
 
 	public String getAboutMe() {

@@ -2,10 +2,6 @@ package vn.dating.activity;
 
 import vn.dating.R;
 import vn.dating.task.AutoSigninTask;
-import vn.dating.task.TaskListener;
-import vn.dating.task.bean.UserDetailBean;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
@@ -17,13 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
-public class MainActivity extends Activity implements TaskListener<UserDetailBean> {
-	// UI references.
-	private EditText mEmailView;
-	private EditText mPasswordView;
-	
+public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,7 +25,7 @@ public class MainActivity extends Activity implements TaskListener<UserDetailBea
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		showProgress(true);
-		AutoSigninTask autoSigninTask = new AutoSigninTask(this, this);
+		AutoSigninTask autoSigninTask = new AutoSigninTask(this);
 		autoSigninTask.execute();
 	}
 
@@ -103,29 +94,12 @@ public class MainActivity extends Activity implements TaskListener<UserDetailBea
 		}
 	}
 
-	@Override
-	public void onPostExecute(UserDetailBean userDetailBean) {
-		showProgress(false);
-		if (userDetailBean != null) {
-			Intent i = new Intent(MainActivity.this, UserActivity.class);
-            startActivity(i);
-		}
-		
-	}
-
-
-
-	@Override
-	public void onCancelled() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	/**
 	 * Shows the progress UI and hides the login form.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-	private void showProgress(final boolean show) {
+	public void showProgress(final boolean show) {
 		/*// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
 		// for very easy animations. If available, use these APIs to fade-in
 		// the progress spinner.

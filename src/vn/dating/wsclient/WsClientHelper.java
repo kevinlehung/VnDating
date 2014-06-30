@@ -16,7 +16,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.support.Base64;
 import org.springframework.web.client.RestTemplate;
 
-import vn.dating.task.form.UserSigninForm;
+import vn.dating.manager.AccountManager;
+import vn.dating.task.bean.BaseWsBean;
 
 public class WsClientHelper {
 	public static HttpHeaders buildBasicHeaders() {
@@ -75,5 +76,23 @@ public class WsClientHelper {
 		httpHeaders.set("Connection", "Close");
 		HttpEntity request = new HttpEntity(entity, httpHeaders);
 		return request;
+	}
+	
+	public static HttpEntity buildRequestObjWithAuth(Object entity, Map<String, String> headers) {
+		setAuthToHeader(headers);
+		return buildRequestObj(entity,  headers);
+	}
+	public static void setAuthToHeader(Map<String, String> headers) {
+		setAuthToHeader(headers, AccountManager.getInstance().getUserEmail(), AccountManager.getInstance().getPassword());
+	}
+	
+	public static void setAuthToHeader(Map<String, String> headers, String userEmail, String password) {
+		String auth = userEmail + ":" + password;
+		String encodedAuthorisation = Base64.encodeBytes(auth.getBytes());
+		headers.put("Authorization", "Basic " + encodedAuthorisation);
+	}
+	
+	public static boolean isSuccessWsBean(BaseWsBean wsBean) {
+		return wsBean != null && "SUCCESSED".equalsIgnoreCase(wsBean.getProcessStatus());
 	}
 }
