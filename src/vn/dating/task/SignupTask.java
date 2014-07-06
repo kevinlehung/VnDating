@@ -6,8 +6,7 @@ import org.springframework.web.client.RestTemplate;
 
 import vn.dating.activity.RegisterActivity;
 import vn.dating.activity.TakePhotoActivity;
-import vn.dating.db.UserDAO;
-import vn.dating.manager.AccountManager;
+import vn.dating.listener.ISignupResultListener;
 import vn.dating.task.bean.UserDetailBean;
 import vn.dating.task.form.UserSignUpForm;
 import vn.dating.wsclient.WebserviceConstant;
@@ -15,13 +14,13 @@ import vn.dating.wsclient.WsClientHelper;
 import android.content.Intent;
 
 public class SignupTask extends BaseAsyncTask<String, Void, UserDetailBean> {
-	private UserDAO userDAO;
 	private UserSignUpForm userSignUpForm;
+	private ISignupResultListener signupResultListener;
 	
-	public SignupTask(RegisterActivity registerActivity, UserSignUpForm userSignUpForm) {
+	public SignupTask(RegisterActivity registerActivity, UserSignUpForm userSignUpForm, ISignupResultListener signupResultListener) {
 		super(registerActivity);
 		this.userSignUpForm = userSignUpForm;
-		userDAO = new UserDAO(this.dbHelper.getWritableDatabase());
+		this.signupResultListener = signupResultListener;
 	}
 	
 	@Override
@@ -29,7 +28,6 @@ public class SignupTask extends BaseAsyncTask<String, Void, UserDetailBean> {
 		RestTemplate restTemplate = WsClientHelper.buildRestTemplate();
 		UserDetailBean userDetailBean = callSignupWs(userSignUpForm,
 				restTemplate);
-		userDAO.resetUserDetail(userDetailBean.getUserEmail(), userDetailBean.getPassword());
 		return userDetailBean;
     }
 
@@ -46,10 +44,12 @@ public class SignupTask extends BaseAsyncTask<String, Void, UserDetailBean> {
 				UserDetailBean.class);
 		
 		if (WsClientHelper.isSuccessWsBean(userDetailBean)) {
-			userDAO.resetUserDetail(userSignUpForm.getEmail(), userSignUpForm.getPassword());
-			AccountManager.getInstance().updateCredential(userSignUpForm.getEmail(), userSignUpForm.getPassword());
+			/**
+			 * Auto signin
+			 */
+			signupResultListener.onSignupSuccess(userSignUpForm);
 		} else {
-			return null;
+			signupResultListener.onSignupFailed();
 		}
 		return userDetailBean;
 	}
@@ -62,7 +62,10 @@ public class SignupTask extends BaseAsyncTask<String, Void, UserDetailBean> {
 			Intent i = new Intent(context, TakePhotoActivity.class);
 			context.startActivity(i);
 		} else {
-			((RegisterActivity)context).setMailError(userDetailBean.getStatusMessage());
+			/**
+			 * FIXME: display error dialog box
+			 */
+			((RegisterActivity)context).setMailError("Invalid email address");
 		}
 	}
 

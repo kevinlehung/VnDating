@@ -1,6 +1,6 @@
 package vn.dating.db;
 
-import vn.dating.db.DatingContract.UserEntry;
+import vn.dating.db.dao.DatingContract.UserEntry;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

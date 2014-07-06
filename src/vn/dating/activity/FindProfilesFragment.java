@@ -42,6 +42,7 @@ public class FindProfilesFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_find_profiles, container, false);
         setProfileListAdapter(rootView);
+        reloadProfiles();
         return rootView;
     }
 
@@ -57,8 +58,10 @@ public class FindProfilesFragment extends Fragment {
     	this.profileAdapter = new ProfileArrayAdapter(getActivity(), R.id.profileEntry);
 		ListView profileList = (ListView) rootView.findViewById(R.id.profileList);
 		profileList.setAdapter(profileAdapter);
-		
+    }
+
+	private void reloadProfiles() {
 		FindProfilesTask task = new FindProfilesTask(this.profileAdapter);
 		task.execute();
-    }
+	}
 }

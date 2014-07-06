@@ -2,9 +2,13 @@ package vn.dating.task.bean;
 
 import java.util.List;
 
+import android.graphics.Bitmap;
+
 public class ProfileBean extends BaseWsBean {
 	private String fullName;
 	private List<String> photoUrls;
+	private List<Bitmap> photoBitmaps;
+	
 	private String aboutMe;
 	private String userEmail;
 	private String password;
@@ -60,6 +64,12 @@ public class ProfileBean extends BaseWsBean {
 	public void setPhotoUrls(List<String> photoUrls) {
 		this.photoUrls = photoUrls;
 	}
-	
-	
+
+	public List<Bitmap> getPhotoBitmaps() {
+		return photoBitmaps;
+	}
+
+	public void setPhotoBitmaps(List<Bitmap> photoBitmaps) {
+		this.photoBitmaps = photoBitmaps;
+	}
 }

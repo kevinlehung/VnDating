@@ -1,6 +1,7 @@
 package vn.dating.activity;
 
 import vn.dating.R;
+import vn.dating.listener.AuthenticateResultListener;
 import vn.dating.task.AutoSigninTask;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -25,15 +26,12 @@ public class MainActivity extends Activity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		showProgress(true);
-		AutoSigninTask autoSigninTask = new AutoSigninTask(this);
+		AutoSigninTask autoSigninTask = new AutoSigninTask(this, new AuthenticateResultListener(this));
 		autoSigninTask.execute();
 	}
 
-	
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;

@@ -17,6 +17,7 @@ import org.springframework.util.support.Base64;
 import org.springframework.web.client.RestTemplate;
 
 import vn.dating.manager.AccountManager;
+import vn.dating.manager.bean.UserCredentialBean;
 import vn.dating.task.bean.BaseWsBean;
 
 public class WsClientHelper {
@@ -83,7 +84,12 @@ public class WsClientHelper {
 		return buildRequestObj(entity,  headers);
 	}
 	public static void setAuthToHeader(Map<String, String> headers) {
-		setAuthToHeader(headers, AccountManager.getInstance().getUserEmail(), AccountManager.getInstance().getPassword());
+		UserCredentialBean userCredential = AccountManager.getInstance().getUserCredential();
+		if (userCredential != null) {
+			setAuthToHeader(headers, userCredential.getUserName(), userCredential.getPassword());
+		} else {
+			throw new RuntimeException("Failed to load local user credential");
+		}
 	}
 	
 	public static void setAuthToHeader(Map<String, String> headers, String userEmail, String password) {
@@ -93,6 +99,6 @@ public class WsClientHelper {
 	}
 	
 	public static boolean isSuccessWsBean(BaseWsBean wsBean) {
-		return wsBean != null && "SUCCESSED".equalsIgnoreCase(wsBean.getProcessStatus());
+		return wsBean != null && wsBean.getResultCode() == BaseWsBean.DEFAULT_SUCCESS_CODE;
 	}
 }

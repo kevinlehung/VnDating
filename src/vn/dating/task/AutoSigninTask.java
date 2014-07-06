@@ -8,9 +8,9 @@ import org.springframework.web.client.RestTemplate;
 
 import vn.dating.activity.MainActivity;
 import vn.dating.activity.UserActivity;
-import vn.dating.db.DatingContract.UserEntry;
-import vn.dating.db.UserDAO;
-import vn.dating.manager.AccountManager;
+import vn.dating.db.dao.UserDAO;
+import vn.dating.db.dao.DatingContract.UserEntry;
+import vn.dating.listener.IAuthenticateResultListener;
 import vn.dating.task.bean.UserDetailBean;
 import vn.dating.task.form.UserSigninForm;
 import vn.dating.wsclient.WebserviceConstant;
@@ -19,16 +19,21 @@ import android.content.Intent;
 
 public class AutoSigninTask extends BaseAsyncTask<String, Void, UserDetailBean> {
 	private UserDAO userDAO;
+	private Map<String, String> localUserDetail;
 	
-	public AutoSigninTask(MainActivity mainActivity) {
+	private IAuthenticateResultListener authenticateResultListener;
+	
+	public AutoSigninTask(MainActivity mainActivity, IAuthenticateResultListener authenticateResultListener) {
 		super(mainActivity);
-		this.userDAO = new UserDAO(dbHelper.getWritableDatabase());
+		this.userDAO = new UserDAO();
+		this.authenticateResultListener = authenticateResultListener;
 	}
 
 	@Override
 	protected UserDetailBean doInBackground(String... params) {
 		UserDetailBean userDetailBean = null;
-		UserSigninForm userSigninForm = buildUserSigninForm();
+		localUserDetail = userDAO.getUserDetail();
+		UserSigninForm userSigninForm = buildUserSigninForm(localUserDetail);
 		if (userSigninForm != null) {
 			RestTemplate restTemplate = WsClientHelper.buildRestTemplate();
 			
@@ -36,6 +41,7 @@ public class AutoSigninTask extends BaseAsyncTask<String, Void, UserDetailBean> 
 					restTemplate);
 	        
 		}
+		
 		return userDetailBean;
     }
 
@@ -52,10 +58,9 @@ public class AutoSigninTask extends BaseAsyncTask<String, Void, UserDetailBean> 
 		return userDetailBean;
 	}
 
-	private UserSigninForm buildUserSigninForm() {
-		Map<String, String> userDetail = userDAO.getUserDetail();
-		if (userDetail != null) {
-			UserSigninForm userSigninForm = new UserSigninForm(userDetail.get(UserEntry.COLUMN_USER_EMAIL), userDetail.get(UserEntry.COLUMN_PASSWORD));
+	private UserSigninForm buildUserSigninForm(Map<String, String> localUserDetail) {
+		if (localUserDetail != null) {
+			UserSigninForm userSigninForm = new UserSigninForm(localUserDetail.get(UserEntry.COLUMN_USER_EMAIL), localUserDetail.get(UserEntry.COLUMN_PASSWORD));
 			return userSigninForm;
 		}
 		return null;
@@ -63,17 +68,10 @@ public class AutoSigninTask extends BaseAsyncTask<String, Void, UserDetailBean> 
 
 	@Override
 	protected void onPostExecute(UserDetailBean userDetailBean) {
-		if (userDetailBean != null) {
-			AccountManager.getInstance().updateCredential(userDetailBean.getUserEmail(), userDetailBean.getPassword());
-		}
 		((MainActivity)context).showProgress(false);
 		if (userDetailBean != null) {
 			Intent i = new Intent(context, UserActivity.class);
 			context.startActivity(i);
 		}
-	}
-
-	@Override
-	protected void onCancelled() {
 	}
 }

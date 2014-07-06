@@ -3,7 +3,7 @@ package vn.dating.wsclient;
 public interface WebserviceConstant {
 	//public static final String BASE_WEBSERVICE_URL = "http://Welcomes-PC:8080/ds/ws";
 	//public static final String BASE_WEBSERVICE_URL = "http://192.168.1.9:8080/ds/ws";
-	public static final String BASE_WEBSERVICE_URL = "http://192.168.56.26:8080/ds/ws";
+	public static final String BASE_WEBSERVICE_URL = "http://192.168.14.21:8080/ds/ws";
 	
 	public interface ParamNames {
 		public static final String EMAIL = "email";

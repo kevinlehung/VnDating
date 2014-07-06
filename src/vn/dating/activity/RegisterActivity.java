@@ -6,6 +6,7 @@ import java.util.List;
 import vn.dating.R;
 import vn.dating.adapter.NameValueArrayAdapter;
 import vn.dating.adapter.NameValueItem;
+import vn.dating.listener.SignupResultListener;
 import vn.dating.task.SignupTask;
 import vn.dating.task.form.UserSignUpForm;
 import android.animation.Animator;
@@ -198,7 +199,7 @@ public class RegisterActivity extends Activity {
 			userSignupForm.setFullName(mFullName);
 			userSignupForm.setAboutMe(mAboutMe);
 			userSignupForm.setMaritalStatus(mMaritalStatus);
-			SignupTask signupTask = new SignupTask(this, userSignupForm);
+			SignupTask signupTask = new SignupTask(this, userSignupForm, new SignupResultListener(this));
 			signupTask.execute(new String[] {mEmail, mPassword});
 		}
 	}

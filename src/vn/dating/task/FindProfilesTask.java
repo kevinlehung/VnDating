@@ -1,5 +1,6 @@
 package vn.dating.task;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +11,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import android.graphics.Bitmap;
 import vn.dating.adapter.ProfileArrayAdapter;
 import vn.dating.task.bean.ProfileBean;
+import vn.dating.util.GraphicUtil;
 import vn.dating.wsclient.WebserviceConstant;
 import vn.dating.wsclient.WsClientHelper;
 
@@ -33,12 +36,23 @@ public class FindProfilesTask extends BaseAsyncTask<String, Void, List<ProfileBe
 		ProfileBean[] profileBeans  = template.postForObject(
 				searchUserProfileWsUrl, requestEntity,
 				ProfileBean[].class, new Object[]{});
-        
+		for (ProfileBean profileBean : profileBeans) {
+			List<String> photoUrls = profileBean.getPhotoUrls();
+			if (photoUrls != null) {
+				List<Bitmap> photoBitmaps = new ArrayList<Bitmap>();
+	
+				for (String photoUrl : photoUrls) {
+					Bitmap bitmap = GraphicUtil.getImageBitmap(photoUrl);
+					photoBitmaps.add(bitmap);
+				}
+				profileBean.setPhotoBitmaps(photoBitmaps);
+			}
+			
+		}
 		return Arrays.asList(profileBeans);
     }
 
     protected void onPostExecute(List<ProfileBean> profileBeans) {
-    	adapter.setProfileBeans(profileBeans);
-		adapter.notifyDataSetChanged();
+    	adapter.addAll(profileBeans);
     }
 }

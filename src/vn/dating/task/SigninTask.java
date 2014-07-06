@@ -5,7 +5,7 @@ import org.springframework.web.client.RestTemplate;
 
 import vn.dating.activity.LoginActivity;
 import vn.dating.activity.UserActivity;
-import vn.dating.db.UserDAO;
+import vn.dating.listener.IAuthenticateResultListener;
 import vn.dating.manager.AccountManager;
 import vn.dating.task.bean.UserDetailBean;
 import vn.dating.task.form.UserSigninForm;
@@ -14,10 +14,10 @@ import vn.dating.wsclient.WsClientHelper;
 import android.content.Intent;
 
 public class SigninTask extends BaseAsyncTask<String, Void, UserDetailBean>  {
-	private UserDAO userDAO;
-	public SigninTask(LoginActivity loginActivity) {
+	private IAuthenticateResultListener authenticateResultListener;
+	public SigninTask(LoginActivity loginActivity, IAuthenticateResultListener authenticateResultListener) {
 		super(loginActivity);
-		userDAO = new UserDAO(this.dbHelper.getWritableDatabase());
+		this.authenticateResultListener = authenticateResultListener;
 	}
 
 	@Override
@@ -28,23 +28,22 @@ public class SigninTask extends BaseAsyncTask<String, Void, UserDetailBean>  {
 		UserDetailBean userDetailBean = callSigninWs(userSigninForm,
 				restTemplate);
 		if (WsClientHelper.isSuccessWsBean(userDetailBean)) {
-			userDAO.resetUserDetail(userSigninForm.getEmail(), userSigninForm.getPassword());
-			AccountManager.getInstance().updateCredential(userDetailBean.getUserEmail(), userDetailBean.getPassword());
+			authenticateResultListener.onSigninSuccess(userSigninForm.getEmail(), 
+					userSigninForm.getPassword());
+			return userDetailBean;
 		} else {
+			authenticateResultListener.onSigninFailed();
 			return null;
 		}
-		return userDetailBean;
 	}
-
 	
 	private UserDetailBean callSigninWs(
 			UserSigninForm userSigninForm,
 			RestTemplate restTemplate) {
 		String signinWsUrl = WsClientHelper.buildWsUrl(WebserviceConstant.API.SIGNIN);
 		HttpEntity request = WsClientHelper.buildRequestObj(userSigninForm);
-		UserDetailBean userDetailBean = restTemplate.postForObject(signinWsUrl, request,
+		return restTemplate.postForObject(signinWsUrl, request,
 				UserDetailBean.class);
-		return userDetailBean;
 	}
 
 	private UserSigninForm buildUserSigninForm(String params[]) {
@@ -55,13 +54,12 @@ public class SigninTask extends BaseAsyncTask<String, Void, UserDetailBean>  {
 	@Override
 	protected void onPostExecute(final UserDetailBean userDetailBean) {
 		((LoginActivity)context).showProgress(false);
-
 		if (userDetailBean != null) {
 			Intent i = new Intent(context, UserActivity.class);
 			context.startActivity(i);
 		}
 	}
-
+	
 	@Override
 	protected void onCancelled() {
 		((LoginActivity)context).showProgress(false);

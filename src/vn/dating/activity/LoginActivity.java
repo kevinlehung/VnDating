@@ -1,6 +1,7 @@
 package vn.dating.activity;
 
 import vn.dating.R;
+import vn.dating.listener.AuthenticateResultListener;
 import vn.dating.task.SigninTask;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -141,7 +142,7 @@ public class LoginActivity extends Activity {
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
-			SigninTask userSigninTask = new SigninTask(this);
+			SigninTask userSigninTask = new SigninTask(this, new AuthenticateResultListener(this));
 			userSigninTask.execute(new String[]{mEmail, mPassword});
 		}
 	}

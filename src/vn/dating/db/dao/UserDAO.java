@@ -1,20 +1,15 @@
-package vn.dating.db;
+package vn.dating.db.dao;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import vn.dating.db.DatingContract.UserEntry;
+import vn.dating.db.dao.DatingContract.UserEntry;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class UserDAO {
-	SQLiteDatabase db;
-	
-	public UserDAO(SQLiteDatabase db) {
-		this.db = db;
-	}
-	
+public class UserDAO extends BaseDAO {
+
 	public long resetUserDetail(String email, String password) {
 		removeUserDetail();
 		return storeUserDetail(email, password);
@@ -61,4 +56,5 @@ public class UserDAO {
 		}
 		return null;
 	}
+	
 }

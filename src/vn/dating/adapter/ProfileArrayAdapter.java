@@ -6,26 +6,17 @@ import java.util.List;
 import vn.dating.R;
 import vn.dating.task.bean.ProfileBean;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.loopj.android.image.SmartImageView;
 
 public class ProfileArrayAdapter extends ArrayAdapter<ProfileBean> {
 
-	private List<ProfileBean> profileBeans = new ArrayList<ProfileBean>();
 	private Context context;
-
-	public List<ProfileBean> getProfileBeans() {
-		return profileBeans;
-	}
-
-	public void setProfileBeans(List<ProfileBean> profileBeans) {
-		this.profileBeans = profileBeans;
-	}
 
 	public Context getContext() {
 		return context;
@@ -41,35 +32,30 @@ public class ProfileArrayAdapter extends ArrayAdapter<ProfileBean> {
 	}
 
 	@Override
-	public int getCount() {
-		return getProfileBeans().size();
-	}
-
-	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View v = convertView;
 
-		if (v == null) {
+		if (convertView == null) {
 			LayoutInflater inflater = (LayoutInflater) getContext()
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = inflater.inflate(R.layout.profile_entry, null);
+			convertView = inflater.inflate(R.layout.profile_entry, null);
 		}
-
-		ProfileBean profileBean = profileBeans.get(position);
+		final ProfileBean profileBean = this.getItem(position);
 		if (profileBean != null) {
-			TextView fullNameTxt = (TextView) v.findViewById(R.id.fullNameTxt);
+			TextView fullNameTxt = (TextView) convertView.findViewById(R.id.fullNameTxt);
 			fullNameTxt.setText(profileBean.getFullName());
 			
-			TextView aboutMeTxt = (TextView) v.findViewById(R.id.aboutMeTxt);
+			TextView aboutMeTxt = (TextView) convertView.findViewById(R.id.aboutMeTxt);
 			aboutMeTxt.setText(profileBean.getAboutMe());
-			
-			SmartImageView photoImg = (SmartImageView) v.findViewById(R.id.photoImg);
+			final ImageView photoImg = (ImageView) convertView.findViewById(R.id.photoImg);
 			if (!profileBean.getPhotoUrls().isEmpty()) {
-				photoImg.setImageUrl(profileBean.getPhotoUrls().get(0));
+				List<Bitmap> photoBitmaps = profileBean.getPhotoBitmaps();
+				if (photoBitmaps != null) {
+					photoImg.setImageBitmap(photoBitmaps.get(0));
+				}
+			} else {
+				photoImg.setImageResource(R.drawable.anonymouse_female);
 			}
 		}
-
-		return v;
+		return convertView;
 	}
-
 }

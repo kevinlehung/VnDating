@@ -1,12 +1,17 @@
 package vn.dating.util;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 public class GraphicUtil {
 	public static int calculateInSampleSize(BitmapFactory.Options bmpOptions,
@@ -66,4 +71,24 @@ public class GraphicUtil {
         
         return scaledPhotoFile;
 	}
+	
+	public static Bitmap getImageBitmap(String url) {
+        Bitmap bm = null;
+        InputStream is = null;
+        BufferedInputStream bis = null;
+        try {
+            URL aURL = new URL(url);
+            URLConnection conn = aURL.openConnection();
+            conn.connect();
+            is = conn.getInputStream();
+            bis = new BufferedInputStream(is);
+            bm = BitmapFactory.decodeStream(bis);
+       } catch (IOException e) {
+           throw new RuntimeException(e);
+       } finally {
+    	   IOUtils.closeQuietly(bis);
+    	   IOUtils.closeQuietly(is);
+       }
+       return bm;
+    }
 }

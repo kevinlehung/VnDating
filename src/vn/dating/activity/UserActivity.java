@@ -1,6 +1,7 @@
 package vn.dating.activity;
 
 import vn.dating.R;
+import vn.dating.listener.AuthenticateResultListener;
 import vn.dating.task.SignoutTask;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -61,7 +62,7 @@ public class UserActivity extends Activity
 	        	fragment = AccountSettingFragment.newInstance(position + 1);
 	        	break;
 	        case NavigationDrawerFragment.SIGNOUT_POSITION:
-	        	SignoutTask signoutTask = new SignoutTask(this);
+	        	SignoutTask signoutTask = new SignoutTask(this, new AuthenticateResultListener(this));
 	        	signoutTask.execute();
 	        	break;
 	    }
