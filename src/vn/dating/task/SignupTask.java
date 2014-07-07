@@ -36,10 +36,8 @@ public class SignupTask extends BaseAsyncTask<String, Void, UserDetailBean> {
 			RestTemplate restTemplate) {
 		String signupWsUrl = WsClientHelper.buildWsUrl(WebserviceConstant.API.SIGNUP);
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Connection", "Close");
 		
-		HttpEntity request = new HttpEntity(userSignUpForm, headers);
+		HttpEntity request = WsClientHelper.buildRequestObj(userSignUpForm);
 		UserDetailBean userDetailBean = restTemplate.postForObject(signupWsUrl, request,
 				UserDetailBean.class);
 		

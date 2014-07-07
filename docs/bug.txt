@@ -1,0 +1,2 @@
+#1 (resolved): Register => Signout => Signin (same username/password with register)
+#2 (openning): out of memory when using bitmap (http://stackoverflow.com/questions/19151719/how-to-avoid-out-of-memory-error-while-using-bitmap-in-android)

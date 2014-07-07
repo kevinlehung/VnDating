@@ -3,7 +3,7 @@ package vn.dating.task.bean;
 public class UserDetailBean extends BaseWsBean {
 	private String userEmail;
 	private String password;
-
+	
 	public String getUserEmail() {
 		return userEmail;
 	}

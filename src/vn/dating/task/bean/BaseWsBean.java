@@ -1,5 +1,8 @@
 package vn.dating.task.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BaseWsBean {
 	public static final int DEFAULT_SUCCESS_CODE = 1;
 	public static final int DEFAULT_FAILED_CODE = 1;

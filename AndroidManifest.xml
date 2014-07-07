@@ -16,7 +16,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" 
-        android:name="vn.dating.VnDatingApp">
+        android:name="vn.dating.app.VnDatingApp">
         <activity
             android:name="vn.dating.activity.MainActivity"
             android:label="@string/app_name"

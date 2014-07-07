@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import vn.dating.activity.MainActivity;
@@ -49,10 +51,9 @@ public class AutoSigninTask extends BaseAsyncTask<String, Void, UserDetailBean> 
 			UserSigninForm userSigninForm,
 			RestTemplate restTemplate) {
 		String signinWsUrl = WsClientHelper.buildWsUrl(WebserviceConstant.API.SIGNIN);
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Connection", "Close");
+		MultiValueMap<String, Object> params = new LinkedMultiValueMap<String, Object>();
+		HttpEntity request = WsClientHelper.buildRequestObj(userSigninForm);
 		
-		HttpEntity request = new HttpEntity(userSigninForm, headers);
 		UserDetailBean userDetailBean = restTemplate.postForObject(signinWsUrl, request,
 				UserDetailBean.class);
 		return userDetailBean;

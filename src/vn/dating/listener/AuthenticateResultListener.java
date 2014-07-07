@@ -18,5 +18,4 @@ public class AuthenticateResultListener implements IAuthenticateResultListener {
 	@Override
 	public void onSigninFailed() {
 	}
-
 }

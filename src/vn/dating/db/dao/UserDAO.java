@@ -6,7 +6,6 @@ import java.util.Map;
 import vn.dating.db.dao.DatingContract.UserEntry;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 public class UserDAO extends BaseDAO {
 

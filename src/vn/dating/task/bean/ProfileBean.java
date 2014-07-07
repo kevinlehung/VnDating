@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 public class ProfileBean extends BaseWsBean {
 	private String fullName;
 	private List<String> photoUrls;
-	private List<Bitmap> photoBitmaps;
 	
 	private String aboutMe;
 	private String userEmail;
@@ -65,11 +64,4 @@ public class ProfileBean extends BaseWsBean {
 		this.photoUrls = photoUrls;
 	}
 
-	public List<Bitmap> getPhotoBitmaps() {
-		return photoBitmaps;
-	}
-
-	public void setPhotoBitmaps(List<Bitmap> photoBitmaps) {
-		this.photoBitmaps = photoBitmaps;
-	}
 }

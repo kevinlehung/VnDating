@@ -10,7 +10,6 @@ public class DatingContract  {
     /* Inner class that defines user table contents */
     public static abstract class UserEntry implements BaseColumns {
         public static final String TABLE_NAME = "user";
-        public static final String COLUMN_USER_ID = "user_id";
         public static final String COLUMN_USER_EMAIL = "user_email";
         public static final String COLUMN_PASSWORD = "password";
     }

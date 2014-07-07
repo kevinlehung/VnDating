@@ -21,12 +21,6 @@ import vn.dating.manager.bean.UserCredentialBean;
 import vn.dating.task.bean.BaseWsBean;
 
 public class WsClientHelper {
-	public static HttpHeaders buildBasicHeaders() {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		return headers;
-	}
 
 	public static void addAuthHeaders(HttpHeaders headers, String userName,
 			String password) {
@@ -75,6 +69,7 @@ public class WsClientHelper {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setAll(headers);
 		httpHeaders.set("Connection", "Close");
+		System.setProperty("http.keepAlive", "false"); 
 		HttpEntity request = new HttpEntity(entity, httpHeaders);
 		return request;
 	}
